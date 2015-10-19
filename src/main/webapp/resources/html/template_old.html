@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<script type="text/javascript">
+    var context = {
+        site : {
+            title : "My Maersk Line 2",
+            style : {
+                url : "../../resources/css/theme.css"
+            }
+        },
+        menu : [
+            "home",
+            "aboutsada",
+            "contactsadad",
+            "search",
+            "edit"
+        ],
+        page : {
+            title : "Search Page"
+        }
+    };
+</script>
+<html lang="en">
+<head>
+    <script id="head-template" type="text/x-handlebars-template">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{page.title}}</title>
+        <link rel="stylesheet" type="text/css" href="{{{site.style.url}}}">
+    </script>
+</head>
+<body>
+<div id="page">
+    <div id="header" class="header">
+        <script id="header-template" type="text/x-handlebars-template">
+            <div class="center">
+                <div class="column-left">{{site.title}}</div>
+                <div class="column-right login">{{#if user.name}}Welcome {{user.name}}{{else}}You are not logged in{{/if}}</div>
+            </div>
+            <div class="clear-div"></div>
+        </script>
+        <div id="extension-point-zebra"/>
+    </div>
+    <div id="menu" class="menu">
+        <script id="menu-template" type="text/x-handlebars-template">
+            <div class="center">
+                <ul>
+                    {{#each menu}}
+                        <li><a href="{{this}}.html">{{this}}</a></li>
+                    {{/each}}
+                </ul>
+            </div>
+        </script>
+    </div>
+    <div id="body">
+        <div class="center">
+            This is the page body
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non tempus risus.
+                In ut congue neque. Nullam nec condimentum lorem, non blandit orci. Nulla venenatis massa ac
+                quam lobortis, vitae fringilla quam molestie. Quisque volutpat turpis a lectus consectetur
+                placerat. Quisque egestas bibendum magna a cursus. Aenean rhoncus commodo lacus non consectetur.
+                Etiam id tellus vitae sem euismod sagittis. Donec nec pretium massa, ac fermentum mauris.
+                Suspendisse vel risus aliquam, molestie quam nec, gravida ex. Mauris urna nibh, tincidunt id
+                tincidunt eget, scelerisque eu elit. Praesent sed libero rhoncus, aliquet felis vel, egestas
+                urna. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                Sed non diam at purus dignissim aliquet. Aliquam et scelerisque lacus, quis aliquet enim. Etiam
+                fermentum faucibus lacus, hendrerit facilisis tortor.</p>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="center footer">
+            <div class="column-center">
+                <span class="heading">Maersk Group</span><br/>
+                some text to go here<br/>
+                another link<br/>
+            </div>
+            <div class="column-left">
+                <span class="heading">Static Text</span><br/>
+                This is static<br/>
+                content is the same across pages<br/>
+                key links
+            </div>
+            <div class="column-right">
+                <span class="heading">Placeholder text</span><br/>
+                some text
+            </div>
+            <div class="clear-div"></div>
+        </div>
+    </div>
+    <div id="disclaimer">
+        <script id="disclaimer-template" type="text/x-handlebars-template">
+            <div class="center">
+                <span class="heading">Legal And Site Information</span><br/>
+                © Maersk Line A/S. All Rights Reserved
+            </div>
+        </script>
+    </div>
+</div>
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../js/handlebars-v4.0.2.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        compileAndInjectContent("#head-template", context, "head");
+        compileAndInjectContent("#header-template", context, "#header");
+        compileAndInjectContent("#menu-template", context, "#menu");
+        compileAndInjectContent("#disclaimer-template", context, "#disclaimer");
+
+    });
+
+    function compileAndInjectContent(templateId, context, target){
+        var source   = $(templateId).html();
+        var template = Handlebars.compile(source);
+        var html = template(context);
+        $(target).append(html);
+    }
+</script>
+</body>
+</html>

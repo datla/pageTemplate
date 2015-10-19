@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="entry">
+        <h1>{{title}}</h1>
+        <div class="body">
+            {{body}}
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../resources/js/test.js"></script>
+<script type="text/javascript" src="../../resources/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../../resources/js/handlebars-v4.0.2.js"></script>
+<script id="boostrap-meta-template" type="text/x-handlebars-template">
+    {{#suhael meta}}
+        <meta  {{{this}}} />
+    {{/suhael}}
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var source   = $("#boostrap-meta-template").html();
+        var template = Handlebars.compile(source);
+
+        Handlebars.registerHelper('suhael', function(context, options) {
+            return options.fn(context);
+        });
+        var context = {
+            meta: [
+                "Alan Johnson" ,
+                "Allison House" ,
+                "Nick Pettit",
+                "Jim Hoskins",
+                "Ryan Carson"
+            ]
+        };
+        var html = template(context);
+        $("head").append(html);
+    });
+</script>
