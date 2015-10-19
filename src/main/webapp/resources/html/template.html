@@ -1,22 +1,67 @@
 <script type="text/javascript" src="../js/handlebars-v4.0.2.js"></script>
+<script id="header-template" type="text/x-handlebars-template">
+    <div class="center">
+        <div class="column-left">{{site.title}}</div>
+        <div class="column-right login">{{#if user.name}}Welcome {{user.name}}{{else}}You are not logged in{{/if}}</div>
+    </div>
+    <div class="clear-div"></div>
+</script>
+<script id="menu-template" type="text/x-handlebars-template">
+    <div class="center">
+        <ul>
+            {{#each menu}}
+            <li><a href="{{this}}.html">{{this}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+</script>
+<script id="disclaimer-template" type="text/x-handlebars-template">
+    <div class="center">
+        <span class="heading">Legal And Site Information</span><br/>
+        © Maersk Line A/S. All Rights Reserved
+    </div>
+</script>
 <script id="page-template" type="text/x-handlebars-template">
-    <!DOCTYPE html>
-    <html>
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+    <html lang="en">
     <head>
-        <title>Handlebars Expressions Example</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Page Title</title>
+        <link rel="stylesheet" type="text/css" href="../css/theme.css">
     </head>
     <body>
-    <h1>Handlebars Expressions Example!</h1>
-    jkhkjskjhjk
-    <!--this is a list which will rendered by handlebars template.    -->
-    <div id="list">
-        {{{list}}}
-    </div>
-
+        <div id="header" class="header">{{{header}}}</div>
+        <div id="menu" class="menu">{{{menu}}}</div>
+        <div id="body">{{{body}}}</div>
+        <div id="footer">
+            <div class="center footer">
+                <div class="column-center">
+                    <span class="heading">Maersk Group</span><br/>
+                    some text to go here<br/>
+                    another link<br/>
+                </div>
+                <div class="column-left">
+                    <span class="heading">Static Text</span><br/>
+                    This is static<br/>
+                    content is the same across pages<br/>
+                    key links
+                </div>
+                <div class="column-right">
+                    <span class="heading">Placeholder text</span><br/>
+                    some text
+                </div>
+                <div class="clear-div"></div>
+            </div>
+        </div>
+        <div id="disclaimer">{{{disclaimer}}}</div>
     </body>
     </html>
 </script>
-<script id="people-template" type="text/x-handlebars-template">
+<script id="body-template" type="text/x-handlebars-template">
+    <div class="center">
     {{#people}}
     <div class="person">
         <h2>{{first_name}} {{last_name}}</h2>
@@ -25,26 +70,48 @@
         <div class="since">User since {{member_since}}</div>
     </div>
     {{/people}}
+    </div>
 </script>
 <script type="text/javascript">
 
+    var context = {};
+    var baseTemplateContext = {};
+
     var page = document.getElementById("page-template").innerHTML;
     var pageTemplate = Handlebars.compile(page);
-    var people = document.getElementById("people-template").innerHTML;
-    var peopleTemplate = Handlebars.compile(people);
+    var header = document.getElementById("header-template").innerHTML;
+    var headerTemplate = Handlebars.compile(header);
+    var menu = document.getElementById("menu-template").innerHTML;
+    var menuTemplate = Handlebars.compile(menu);
+    var body = document.getElementById("body-template").innerHTML;
+    var bodyTemplate = Handlebars.compile(body);
+    var disclaimer = document.getElementById("disclaimer-template").innerHTML;
+    var disclaimerTemplate = Handlebars.compile(disclaimer);
 
-    var data = {
-        people: [
+    var menuItems = [
+        "home",
+        "aboutsada",
+        "contactsadad",
+        "search",
+        "edit"
+    ];
+
+    var people = [
             { first_name: "Alan", last_name: "Johnson", phone: "1234567890", email: "alan@test.com", member_since: "Mar 25, 2011" },
             { first_name: "Allison", last_name: "House", phone: "0987654321", email: "allison@test.com", member_since: "Jan 13, 2011" },
             { first_name: "Nick", last_name: "Pettit", phone: "9836592272", email: "nick@test.com", member_since: "Apr 9, 2009" },
             { first_name: "Jim", last_name: "Hoskins", phone: "7284927150", email: "jim@test.com", member_since: "May 21, 2010" },
             { first_name: "Ryan", last_name: "Carson", phone: "8263729224", email: "ryan@test.com", member_since: "Nov 1, 2008" }
-        ]
-    };
+        ];
 
-    var peopleScript = peopleTemplate(data);
+    context.people = people;
+    context.menu = menuItems;
 
-    var pageScript = pageTemplate({list:peopleScript});
+    baseTemplateContext.header = headerTemplate(context);
+    baseTemplateContext.menu = menuTemplate(context);
+    baseTemplateContext.body = bodyTemplate(context);
+    baseTemplateContext.disclaimer = disclaimerTemplate(context);
+
+    var pageScript = pageTemplate(baseTemplateContext);
     document.write(pageScript);
 </script>
