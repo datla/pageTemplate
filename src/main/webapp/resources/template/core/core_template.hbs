@@ -1,5 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -9,10 +8,44 @@
         <link rel="stylesheet" type="text/css" href="http://localhost:7001/pageTemplate_war_exploded/resources/template/core/theme.css">
     </head>
     <body>
-        <div id="header" class="header">{{> ../header/header}}</div>
-        <div id="menu" class="menu">{{> ../menu/menu}}</div>
-        <div id="body">hello world</div>
-        <div id="footer">{{> ../footer/footer}}</div>
-        <div id="disclaimer">{{> disclaimer}}</div>
+        <div id="header" class="header">
+            {{#block "header" }}
+                This is the header
+            {{/block}}
+        </div>
+        <div id="menu" class="menu">
+            {{#block "menu" }}
+                This is the menu
+            {{/block}}
+        </div>
+        <div id="body">
+            {{#block "body" }}
+                This is the body
+            {{/block}}
+        </div>
+        <div id="footer">
+            {{#block "footer" }}
+                This is the footer
+            {{/block}}
+        </div>
+        <div id="disclaimer">
+            {{#block "disclaimer"}}
+                This is the disclaimer
+            {{/block}}
+        </div>
+        <script type="text/javascript" src="../js/lib/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="../js/lib/handlebars-v4.0.2.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                //compileAndInjectContent("#head-template", context, "head");
+            });
+
+            function compileAndInjectContent(templateId, context, target){
+                var source   = $(templateId).html();
+                var template = Handlebars.compile(source);
+                var html = template(context);
+                $(target).append(html);
+            }
+        </script>
     </body>
 </html>

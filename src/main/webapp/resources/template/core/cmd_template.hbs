@@ -1,0 +1,53 @@
+{{# partial "header" }}
+    <div class="center">
+        <div class="column-left">{{{title}}}</div>
+        <div class="column-right login">{{#if user.name}}Welcome {{user.name}}{{else}}You are not logged in{{/if}}</div>
+    </div>
+    <div class="clear-div"></div>
+{{/partial}}
+
+{{# partial "menu" }}
+    <div class="center">
+        <ul>
+            {{#each menuItems}}
+                <li><a href="{{{this}}}.html">{{{this}}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+{{/partial}}
+
+{{# partial "body" }}
+    <div class="center">
+        This is the body
+    </div>
+{{/partial}}
+
+{{# partial "footer" }}
+    <div class="center footer">
+        <div class="column-center">
+            <span class="heading">Maersk Group</span><br/>
+            some text to go here<br/>
+            another link<br/>
+        </div>
+        <div class="column-left">
+            <span class="heading">Static Text</span><br/>
+            This is static<br/>
+            content is the same across pages<br/>
+            key links
+        </div>
+        <div class="column-right">
+            <span class="heading">Placeholder text</span><br/>
+            some text
+        </div>
+        <div class="clear-div"></div>
+    </div>
+{{/partial}}
+
+{{# partial "disclaimer" }}
+    <div class="center">
+        <span class="heading">Legal And Site Information</span><br/>
+        © Maersk Line A/S. All Rights Reserved
+    </div>
+{{/partial}}
+
+{{> core_template}}
