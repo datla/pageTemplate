@@ -8,10 +8,12 @@ templates['header'] = template({"1":function(container,depth0,helpers,partials,d
 },"3":function(container,depth0,helpers,partials,data) {
     return "You are not logged in";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1;
+    var stack1, helper, alias1=depth0 != null ? depth0 : {};
 
-  return "<div class=\"center\">\n    <div class=\"column-left\">Site Title</div>\n    <div class=\"column-right login\">"
-    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.name : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "")
+  return "<div class=\"center\">\n    <div class=\"column-left\">"
+    + container.escapeExpression(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
+    + "</div>\n    <div class=\"column-right login\">"
+    + ((stack1 = helpers["if"].call(alias1,((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.name : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "")
     + "</div>\n</div>\n<div class=\"clear-div\"></div>";
 },"useData":true});
 })();

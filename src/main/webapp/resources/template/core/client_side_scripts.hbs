@@ -12,11 +12,13 @@
                 $("#menu").append(menuHTML);
             })
 
-
             var footerHTML = Handlebars.templates.footer(context);
             $("#footer").append(footerHTML);
-            var headerHTML = Handlebars.templates.header(context);
-            $("#header").append(headerHTML);
+
+            $.getJSON( "http://localhost:7001/pageTemplate_war_exploded/rest/header/v1", function(data) {
+                var headerHTML = Handlebars.templates.header(data);
+                $("#header").append(headerHTML);
+            })
         });
     </script>
 {{/partial}}

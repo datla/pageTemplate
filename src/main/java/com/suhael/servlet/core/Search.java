@@ -23,7 +23,7 @@ public class Search extends HttpServlet {
         try {
             PrintWriter out = writeTemplate(response);
             out.flush();
-            request.getRequestDispatcher("./views/search/index.jsp").include(request, response);
+            request.getRequestDispatcher("./views/search.jsp").include(request, response);
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
