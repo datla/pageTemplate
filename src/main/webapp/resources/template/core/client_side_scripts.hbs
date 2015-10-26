@@ -5,9 +5,14 @@
     <script type="text/javascript" src="http://localhost:7001/pageTemplate_war_exploded/resources/template/header/header.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+
             var context = {};
-            var menuHTML = Handlebars.templates.menu(context);
-            $("#menu").append(menuHTML);
+            $.getJSON( "http://localhost:7001/pageTemplate_war_exploded/rest/menu/v1", function(data) {
+                var menuHTML = Handlebars.templates.menu(data);
+                $("#menu").append(menuHTML);
+            })
+
+
             var footerHTML = Handlebars.templates.footer(context);
             $("#footer").append(footerHTML);
             var headerHTML = Handlebars.templates.header(context);
