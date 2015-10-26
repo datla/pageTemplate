@@ -2,6 +2,7 @@ package com.suhael.servlet.core;
 
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
+import com.github.jknack.handlebars.io.FileTemplateLoader;
 import com.github.jknack.handlebars.io.ServletContextTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
 import com.suhael.servlet.ServletHelper;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URI;
 
 @WebServlet("/core/search")
 public class Search extends HttpServlet {
@@ -42,8 +44,9 @@ public class Search extends HttpServlet {
     }
 
     public Template createTemplate(ServletContext servletContext, String prefix, String template){
-        TemplateLoader loader = new ServletContextTemplateLoader(servletContext);
-        loader.setPrefix(prefix);
+        //TemplateLoader loader = new ServletContextTemplateLoader(servletContext);
+        TemplateLoader loader = new FileTemplateLoader("http://localhost:7001/pageTemplate_war_exploded/resources/template/core");
+        //loader.setPrefix(prefix);
         Handlebars handlebars = new Handlebars(loader);
         try {
             return handlebars.compile(template);
