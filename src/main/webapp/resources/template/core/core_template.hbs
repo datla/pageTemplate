@@ -9,43 +9,24 @@
     </head>
     <body>
         <div id="header" class="header">
-            {{#block "header" }}
-                This is the header
-            {{/block}}
+            {{#block "header" }}{{/block}}
         </div>
         <div id="menu" class="menu">
-            {{#block "menu" }}
-                This is the menu
-            {{/block}}
+            {{#block "menu" }}{{/block}}
         </div>
-        <div id="body">
-            {{#block "body" }}
-                This is the body
-            {{/block}}
-        </div>
+        <div id="body"></div>
         <div id="footer">
-            {{#block "footer" }}
-                This is the footer
-            {{/block}}
+            {{#block "footer" }}{{/block}}
         </div>
         <div id="disclaimer">
-            {{#block "disclaimer"}}
-                This is the disclaimer
-            {{/block}}
+            {{#block "disclaimer"}}{{/block}}
         </div>
-        <script type="text/javascript" src="../js/lib/jquery-1.9.1.min.js"></script>
-        <script type="text/javascript" src="../js/lib/handlebars-v4.0.2.js"></script>
+        <script type="text/javascript" src="http://localhost:7001/pageTemplate_war_exploded/resources/js/lib/jquery-1.9.1.min.js"></script>
+        {{#block "scripts"}}{{/block}}
         <script type="text/javascript">
             $(document).ready(function() {
-                //compileAndInjectContent("#head-template", context, "head");
+                $('#body_content').appendTo('#body');
             });
-
-            function compileAndInjectContent(templateId, context, target){
-                var source   = $(templateId).html();
-                var template = Handlebars.compile(source);
-                var html = template(context);
-                $(target).append(html);
-            }
         </script>
     </body>
 </html>

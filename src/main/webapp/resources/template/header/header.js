@@ -1,6 +1,6 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
-templates['header.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
+templates['header'] = template({"1":function(container,depth0,helpers,partials,data) {
     var stack1;
 
   return "Welcome "

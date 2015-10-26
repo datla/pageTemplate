@@ -10,32 +10,27 @@ import java.io.IOException;
 
 public class TemplateGenerator {
 
-    public Template compileTemplate(ServletContext servletContext, String prefix, String template){
-        TemplateLoader loader = new ServletContextTemplateLoader(servletContext);
-        loader.setPrefix(prefix);
-        Handlebars handlebars = new Handlebars(loader);
-        try {
-            return handlebars.compile(template);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+    private static final String TEMPLATE_PREFIX_PATH = "/resources/template/core";
+    private ServletContext servletContext;
+    private Handlebars handlebars;
+
+    public TemplateGenerator(ServletContext servletContext){
+        this.servletContext = servletContext;
+        TemplateLoader templateLoader = getTemplateLoader();
+        this.handlebars = new Handlebars(templateLoader);
     }
 
+    public Template compileTemplate(String template) throws IOException {
+        return handlebars.compile(template);
+    }
 
+    public String generateHTML(Template template, Object context) throws IOException {
+        return template.apply(context);
+    }
 
-    public Template compileTemplateFromUrl(ServletContext servletContext, String prefix, String template){
-//        TemplateLoader loader = new ServletContextTemplateLoader(servletContext);
-//        loader.setPrefix(prefix);
-//        Handlebars handlebars = new Handlebars(loader);
-//        try {
-//            return handlebars.compile(template);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        * Handlebars handlebars = new Handlebars();
-//        *
-//        * Template template = handlebars.compileInline(URI.create("mytemplate"));
-        return null;
+    private TemplateLoader getTemplateLoader(){
+        TemplateLoader loader = new ServletContextTemplateLoader(servletContext);
+        loader.setPrefix(TEMPLATE_PREFIX_PATH);
+        return loader;
     }
 }

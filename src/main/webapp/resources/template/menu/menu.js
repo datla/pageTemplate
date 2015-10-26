@@ -1,6 +1,6 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
-templates['menu.hbs'] = template({"1":function(container,depth0,helpers,partials,data) {
+templates['menu'] = template({"1":function(container,depth0,helpers,partials,data) {
     var alias1=container.lambda, alias2=container.escapeExpression;
 
   return "            <li><a href=\""

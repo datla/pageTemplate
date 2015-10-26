@@ -1,0 +1,19 @@
+{{# partial "scripts" }}
+    <script type="text/javascript" src="http://localhost:7001/pageTemplate_war_exploded/resources/js/lib/handlebars-v4.0.2.js"></script>
+    <script type="text/javascript" src="http://localhost:7001/pageTemplate_war_exploded/resources/template/footer/footer.js"></script>
+    <script type="text/javascript" src="http://localhost:7001/pageTemplate_war_exploded/resources/template/menu/menu.js"></script>
+    <script type="text/javascript" src="http://localhost:7001/pageTemplate_war_exploded/resources/template/header/header.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var context = {};
+            var menuHTML = Handlebars.templates.menu(context);
+            $("#menu").append(menuHTML);
+            var footerHTML = Handlebars.templates.footer(context);
+            $("#footer").append(footerHTML);
+            var headerHTML = Handlebars.templates.header(context);
+            $("#header").append(headerHTML);
+        });
+    </script>
+{{/partial}}
+
+{{> core_template}}
