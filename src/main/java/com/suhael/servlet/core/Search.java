@@ -31,16 +31,12 @@ public class Search extends HttpServlet {
             PrintWriter out = response.getWriter();
             out.print(html);
             out.flush();
+            request.getRequestDispatcher("./views/search/index.jsp").include(request, response);
             out.close();
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        try {
-            ServletHelper.renderView(request, response, "./views/search/index.jsp");
         } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
     }
