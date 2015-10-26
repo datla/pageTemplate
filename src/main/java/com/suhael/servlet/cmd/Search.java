@@ -1,4 +1,4 @@
-package com.suhael.servlet.core;
+package com.suhael.servlet.cmd;
 
 import com.github.jknack.handlebars.Template;
 import com.suhael.template.TemplateGenerator;
@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/core/search")
+@WebServlet("/cmd/search")
 public class Search extends HttpServlet {
 
-    private static final String TEMPLATE_NAME = "client_side_scripts";
+    private static final String TEMPLATE_NAME = "cmd_template";
     private static final String VIEW_PATH = "/views/";
 
     protected void doGet(
