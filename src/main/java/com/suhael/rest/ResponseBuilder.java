@@ -5,9 +5,6 @@ import javax.ws.rs.core.Response;
 
 import static javax.ws.rs.core.Response.ok;
 
-/**
- * Created by root on 23/10/15.
- */
 public class ResponseBuilder {
 
     public static Response returnJsonResponse(Object entity) {
