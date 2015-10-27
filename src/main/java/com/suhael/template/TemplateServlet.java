@@ -34,7 +34,7 @@ public class TemplateServlet extends HttpServlet {
     }
 
     private PrintWriter writeTemplate(ServletResponse response) throws IOException {
-        String html = TemplateFactory.getTemplate("cmd", getServletContext());
+        String html = TemplateFactory.getTemplate("cmd");
         PrintWriter out = response.getWriter();
         out.print(html);
         return out;

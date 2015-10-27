@@ -6,19 +6,15 @@ import com.github.jknack.handlebars.TypeSafeTemplate;
 import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
 
-import javax.servlet.ServletContext;
 import java.io.IOException;
 
 public class TemplateGenerator {
 
-    private ServletContext servletContext;
     private Handlebars handlebars;
 
-    public TemplateGenerator(ServletContext servletContext, String templatePath){
-        this.servletContext = servletContext;
+    public TemplateGenerator(String templatePath){
         TemplateLoader templateLoader = getTemplateLoader(templatePath);
         this.handlebars = new Handlebars(templateLoader);
-        //this.handlebars = new Handlebars();
     }
 
     public Template compileTemplate(String template) throws IOException {
