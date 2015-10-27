@@ -1,4 +1,4 @@
-package com.suhael.template.brands;
+package com.suhael.template.brands.cmd;
 
 import com.github.jknack.handlebars.TypeSafeTemplate;
 

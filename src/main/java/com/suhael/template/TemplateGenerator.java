@@ -3,7 +3,7 @@ package com.suhael.template;
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
 import com.github.jknack.handlebars.TypeSafeTemplate;
-import com.github.jknack.handlebars.io.ServletContextTemplateLoader;
+import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
 
 import javax.servlet.ServletContext;
@@ -18,6 +18,7 @@ public class TemplateGenerator {
         this.servletContext = servletContext;
         TemplateLoader templateLoader = getTemplateLoader(templatePath);
         this.handlebars = new Handlebars(templateLoader);
+        //this.handlebars = new Handlebars();
     }
 
     public Template compileTemplate(String template) throws IOException {
@@ -29,7 +30,7 @@ public class TemplateGenerator {
     }
 
     private TemplateLoader getTemplateLoader(String templatePath){
-        TemplateLoader loader = new ServletContextTemplateLoader(servletContext);
+        TemplateLoader loader = new ClassPathTemplateLoader();
         loader.setPrefix(templatePath);
         return loader;
     }

@@ -22,13 +22,13 @@ public class TemplateGeneratorTest extends TestCase {
         super.setUp();
 
         TemplateLoader loader = new ClassPathTemplateLoader();
-        loader.setPrefix("/webapp/resources/template/core");
+        loader.setPrefix("/templates");
         this.handlebars = new Handlebars(loader);
         this.mapper = new ObjectMapper();
     }
 
     public void testHandlebars() throws IOException {
-        //Template template = handlebars.compile("cmd_template");
+        Template template = handlebars.compile("/cmd/cmd_template");
 //        Template template = handlebars.compileInline("<div class=\"center\">\n" +
 //                "    <ul>\n" +
 //                "        {{#each menuItems}}\n" +
@@ -37,18 +37,18 @@ public class TemplateGeneratorTest extends TestCase {
 //                "    </ul>\n" +
 //                "</div>");
 
-        Template template = handlebars.compileInline("");
-
-        String json = "{menuItems: [\"home\", \"about\"]}";
-        Map<String, Object> map = new HashMap<String, Object>();
-
-        // convert JSON string to Map
-        map = mapper.readValue(json, new TypeReference<Map<String, String>>(){});
-
-        Map<String, Object> values = new HashMap<>();
-        values.put("menuItems", Arrays.asList("home", "about"));
-
-        String html = template.apply(map);
-        System.out.println(html);
+//        Template template = handlebars.compileInline("");
+//
+//        String json = "{menuItems: [\"home\", \"about\"]}";
+//        Map<String, Object> map = new HashMap<String, Object>();
+//
+//        // convert JSON string to Map
+//        map = mapper.readValue(json, new TypeReference<Map<String, String>>(){});
+//
+//        Map<String, Object> values = new HashMap<>();
+//        values.put("menuItems", Arrays.asList("home", "about"));
+//
+//        String html = template.apply(map);
+//        System.out.println(html);
     }
 }
