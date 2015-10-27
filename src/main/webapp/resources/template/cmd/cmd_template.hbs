@@ -7,13 +7,7 @@
 {{/partial}}
 
 {{# partial "menu" }}
-    <div class="center">
-        <ul>
-            {{#each menuItems}}
-                <li><a href="{{{this}}}.html">{{{this}}}</a></li>
-            {{/each}}
-        </ul>
-    </div>
+    {{embedded "menu"}}
 {{/partial}}
 
 {{# partial "footer" }}
@@ -44,4 +38,23 @@
     </div>
 {{/partial}}
 
-{{> core_template}}
+{{# partial "scripts" }}
+    <script type="text/javascript" src="http://localhost:7001/pageTemplate_war_exploded/resources/js/lib/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="http://localhost:7001/pageTemplate_war_exploded/resources/js/lib/handlebars-v4.0.2.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.getJSON( "http://localhost:7001/pageTemplate_war_exploded/rest/menu/v1", function(data) {
+                compileAndInjectContent("#menu-hbs", data, "#menu");
+            });
+        });
+
+        function compileAndInjectContent(templateId, context, target){
+            var source   = $(templateId).html();
+            var template = Handlebars.compile(source);
+            var html = template(context);
+            $(target).append(html);
+        }
+    </script>
+{{/partial}}
+
+{{> ../core/core_template}}

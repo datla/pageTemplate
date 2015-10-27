@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class TemplateGenerator {
 
-    private static final String TEMPLATE_PREFIX_PATH = "/resources/template/core";
+    private static final String TEMPLATE_PREFIX_PATH = "/resources/template/cmd";
     private ServletContext servletContext;
     private Handlebars handlebars;
 
