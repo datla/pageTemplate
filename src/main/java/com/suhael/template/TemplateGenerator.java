@@ -2,6 +2,7 @@ package com.suhael.template;
 
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
+import com.github.jknack.handlebars.TypeSafeTemplate;
 import com.github.jknack.handlebars.io.ServletContextTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
 
@@ -24,7 +25,7 @@ public class TemplateGenerator {
         return handlebars.compile(template);
     }
 
-    public String generateHTML(Template template, Object context) throws IOException {
+    public String generateHTML(TypeSafeTemplate template, Object context) throws IOException {
         return template.apply(context);
     }
 

@@ -1,6 +1,7 @@
 package com.suhael.template;
 
-import com.github.jknack.handlebars.Template;
+import com.suhael.template.brands.CMDContext;
+import com.suhael.template.brands.CMDTemplate;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletResponse;
@@ -39,8 +40,8 @@ public class TemplateServlet extends HttpServlet {
 
     private PrintWriter writeTemplate(ServletResponse response) throws IOException {
         TemplateGenerator templateGenerator = new TemplateGenerator(getServletContext());
-        Template template = templateGenerator.compileTemplate("cmd_template");
-        String html = templateGenerator.generateHTML(template, getTemplateData());
+        CMDTemplate template = templateGenerator.compileTemplate("cmd_template").as(CMDTemplate.class);
+        String html = templateGenerator.generateHTML(template, new CMDContext());
         PrintWriter out = response.getWriter();
         out.print(html);
         return out;
