@@ -11,13 +11,12 @@ import java.io.IOException;
 
 public class TemplateGenerator {
 
-    private static final String TEMPLATE_PREFIX_PATH = "/resources/template/cmd";
     private ServletContext servletContext;
     private Handlebars handlebars;
 
-    public TemplateGenerator(ServletContext servletContext){
+    public TemplateGenerator(ServletContext servletContext, String templatePath){
         this.servletContext = servletContext;
-        TemplateLoader templateLoader = getTemplateLoader();
+        TemplateLoader templateLoader = getTemplateLoader(templatePath);
         this.handlebars = new Handlebars(templateLoader);
     }
 
@@ -29,9 +28,9 @@ public class TemplateGenerator {
         return template.apply(context);
     }
 
-    private TemplateLoader getTemplateLoader(){
+    private TemplateLoader getTemplateLoader(String templatePath){
         TemplateLoader loader = new ServletContextTemplateLoader(servletContext);
-        loader.setPrefix(TEMPLATE_PREFIX_PATH);
+        loader.setPrefix(templatePath);
         return loader;
     }
 }

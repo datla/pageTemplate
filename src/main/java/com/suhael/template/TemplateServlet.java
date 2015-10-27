@@ -1,8 +1,5 @@
 package com.suhael.template;
 
-import com.suhael.template.brands.CMDContext;
-import com.suhael.template.brands.CMDTemplate;
-
 import javax.servlet.ServletException;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
@@ -11,10 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
 
-@WebServlet("page/core/search")
+@WebServlet("page/*")
 public class TemplateServlet extends HttpServlet {
 
     private static final String VIEW_PATH = "/views/";
@@ -39,22 +34,9 @@ public class TemplateServlet extends HttpServlet {
     }
 
     private PrintWriter writeTemplate(ServletResponse response) throws IOException {
-        TemplateGenerator templateGenerator = new TemplateGenerator(getServletContext());
-        CMDTemplate template = templateGenerator.compileTemplate("cmd_template").as(CMDTemplate.class);
-        String html = templateGenerator.generateHTML(template, new CMDContext());
+        String html = TemplateFactory.getTemplate("cmd", getServletContext());
         PrintWriter out = response.getWriter();
         out.print(html);
         return out;
-    }
-
-    private Map getTemplateData() throws IOException {
-        Map<Object, Object> values = new HashMap<>();
-
-        //ObjectMapper mapper = new ObjectMapper();
-
-        //Map<Object, Object> menu = mapper.readValue(new URL("http://localhost:7001/pageTemplate_war_exploded/rest/menu/v1"), new TypeReference<Map<Object, Object>>(){});
-
-        values.put("title", "suhael");
-        return values;
     }
 }
